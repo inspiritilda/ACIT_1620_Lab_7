@@ -43,56 +43,56 @@ export function getContinueBtn() {
     /**
      * Get 'continue/try again' button node
      */
-
+    return document.querySelector('#continue');
 }
 
 export function getNumberInput() {
     /**
      * Get number input node
      */
-
+    return document.querySelector('input[type="number"]');
 }
 
 export function getOutput() {
     /**
      * Get output node
      */
-
+    return document.querySelector('output');
 }
 
 export function getPanel() {
     /**
      * Get card selection panel node
      */
-
+    return document.querySelector('main > div:last-child');
 }
 
 export function getTiles() {
     /**
      * Get the card tiles
      */
-
+    return document.querySelector('.tiles input');
 }
 
 export function getTries() {
     /**
      * Get the current value of tries
      */
-
+    return getNumberInput().value;
 }
 
 export function getRestartBtn() {
     /**
      * Get 'restart' button node
      */
-
+    return document.querySelector('#restart');
 }
 
 export function getShowBtn() {
     /**
      * Get 'show' button node
      */
-    
+    return document.queryselecter('#show-btn');
 }
 
 export function setCard() {
