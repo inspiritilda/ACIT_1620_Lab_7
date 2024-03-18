@@ -10,7 +10,6 @@
  * displayed, allowing the player to reveal the answer.
  */
 import {
-    
     getCard,
     getCheckbox,
     getContinueBtn,

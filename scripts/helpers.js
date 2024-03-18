@@ -22,66 +22,77 @@ export function getCard() {
     /**
      * Get answer card name
      */
+    return getCardNode().alt;
 }
 
 export function getCardNode() {
     /**
      * Get answer card image node
      */
+    return document.querySelector('.answer img');
 }
 
 export function getCheckbox() {
     /**
      * Get checkbox node
      */
+    return document.querySelector('checkbox');
 }
 
 export function getContinueBtn() {
     /**
      * Get 'continue/try again' button node
      */
+
 }
 
 export function getNumberInput() {
     /**
      * Get number input node
      */
+
 }
 
 export function getOutput() {
     /**
      * Get output node
      */
+
 }
 
 export function getPanel() {
     /**
      * Get card selection panel node
      */
+
 }
 
 export function getTiles() {
     /**
      * Get the card tiles
      */
+
 }
 
 export function getTries() {
     /**
      * Get the current value of tries
      */
+
 }
 
 export function getRestartBtn() {
     /**
      * Get 'restart' button node
      */
+
 }
 
 export function getShowBtn() {
     /**
      * Get 'show' button node
      */
+    
 }
 
 export function setCard() {
