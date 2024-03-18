@@ -112,8 +112,15 @@ export function setCard() {
         'king of diamonds', 
         'queen of spades'
     ];
+    const idx = math.floor(math.random() * 9);
+    const card = cards[idx];
+    const path = card.split(' ').join('_');
+    const cardNode = getCardNode();
+    cardNode.src = `images/${path}.svg`;
+    cardNode.alt = card;
 
     // hide the card
+    cardNode.classList.toggle('hidden', true);
 
      // cancel the animation
 }
