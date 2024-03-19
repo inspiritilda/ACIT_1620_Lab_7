@@ -36,7 +36,7 @@ export function getCheckbox() {
     /**
      * Get checkbox node
      */
-    return document.querySelector('checkbox');
+    return document.querySelector('#tries-checkbox');
 }
 
 export function getContinueBtn() {
@@ -122,16 +122,24 @@ export function setCard() {
     // hide the card
     cardNode.classList.toggle('hidden', true);
 
-     // cancel the animation
+    // cancel the animation
+    if (cardNode) {
+        const parentElement = cardNode.parentElement;
+        cardNode.classList.remove('fade');
+        parentElement.classList.remove('flip');
+    }
 }
 
 export function showCard() {
     /**
      * Show the answer card and disable the 'show' button
      */
+    getCardNode().classList.toggle('hidden', false);
+    getShowBtn().toggleAttribute('disabled', true);
 
     // animate the card
-
+    cardNode.classList.add('fade');
+    cardNode.parentElement.classList.add('flip');
 }
 
 export function toggleInputState(e) {
@@ -141,5 +149,5 @@ export function toggleInputState(e) {
      * The information is available in the event object passed to the
      * function at call time.
      */
+    getNumberInput().toggleAttribute('disabled', e.target.checked);
 }
-
