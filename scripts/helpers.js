@@ -123,6 +123,11 @@ export function setCard() {
     cardNode.classList.toggle('hidden', true);
 
     // cancel the animation
+    if (cardNode) {
+        const parentElement = cardNode.parentElement;
+        cardNode.classList.remove('fade');
+        parentElement.classList.remove('flip');
+    }
 }
 
 export function showCard() {
@@ -133,7 +138,8 @@ export function showCard() {
     getShowBtn().toggleAttribute('disabled', true);
 
     // animate the card
-
+    cardNode.classList.add('fade');
+    cardNode.parentElement.classList.add('flip');
 }
 
 export function toggleInputState(e) {

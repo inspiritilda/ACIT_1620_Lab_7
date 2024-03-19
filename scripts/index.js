@@ -57,11 +57,15 @@ function setup() {
     getContinueBtn().addEventListener('click', activate);
     getCheckbox().addEventListener('change', toggleInputState);
     getNumberInput().addEventListener('input', (event) => {
-        // 1. check the input value, if none provided, do nothing
-
-        // 2. restart a new round of game
+        const inputValue = event.target.value.trim();
+        if (inputValue !== "") {
+            const newTries = parseInt(inputValue);
+            if (!isNaN(newTries) && newTries > 0) {
+                tries = newTries;
+                play();
+            }
+        }
     });
-
 
     for (let tile of getTiles()) {
         tile.addEventListener('click', (e) => {
@@ -147,7 +151,6 @@ function play() {
     getOutput().querySelectorAll('span:not(:last-child)').forEach(el => el.textContent = '');
 }
 
-
 function pause() {
     /**
      * Called only if the player has more guesses to try. (tries > 1)
@@ -159,7 +162,6 @@ function pause() {
     getOutput().querySelector('span:last-child').textContent = `You have ${--tries} left`;
     getContinueBtn().classList.toggle('hidden', false);
 }
-
 
 function showResults() {
     /**
