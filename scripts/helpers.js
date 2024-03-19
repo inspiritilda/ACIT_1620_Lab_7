@@ -134,12 +134,13 @@ export function showCard() {
     /**
      * Show the answer card and disable the 'show' button
      */
-    getCardNode().classList.toggle('hidden', false);
+    const cardNode = getCardNode();
+    cardNode.classList.toggle('hidden', false);
     getShowBtn().toggleAttribute('disabled', true);
 
-    // animate the card
-    cardNode.classList.add('fade');
-    cardNode.parentElement.classList.add('flip');
+    // Trigger the animations
+    cardNode.classList.add('flip');
+    cardNode.parentElement.classList.add('fade');
 }
 
 export function toggleInputState(e) {
