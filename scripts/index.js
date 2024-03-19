@@ -84,25 +84,22 @@ function setup() {
             }
         });
     };
-    
 }
 
-function deactivate() {
+export function deactivate() {
     /**
      * Called after each guess
      * - Disable click events on the card tiles and dim
      * the selection panel
      */
     for (let tile of getTiles()) {
-        tile.toggleAttribute('disabled', true);
+        tile.disabled = true;
     }
 
-    // Dim the selection panel
     getPanel().classList.add('dim');
 }
 
-
-function activate() {
+export function activate() {
     /**
      * Called on page load or when the 'restart' button is clicked
      * - (Re-)enable click events on the card tiles and un-dim
@@ -117,12 +114,11 @@ function activate() {
     }
 
     getCheckbox().toggleAttribute('checked', false);
-    getContinueBtn().classlist.toggle('hidden', true);
-    getShowBtn().toggleAttribute('disable', false);
+    getContinueBtn().classList.add('hidden'); 
+    getShowBtn().toggleAttribute('disabled', false);
 }
 
-
-function play() {
+export function play() {
     /**
      * Called on page load or when the 'restart' button is clicked
      * - Randomly choose a card to guess
@@ -133,25 +129,19 @@ function play() {
      * - Clear the previous round's output
      */
     setCard();
-
-    const tiles = getTiles(); // -> NodeList
-    const randomizedTiles = shuffle(Array.from(tiles)); // first tuen NodeList into Array
+    const tiles = getTiles();
+    const randomizedTiles = shuffle(Array.from(tiles));
     for (let i = 0; i < randomizedTiles.length; i++) {
         randomizedTiles[i].parentElement.style.order = `${i}`;
     }
-
     tries = getTries();
-
     activate();
-
-    getShowBtn().classlist.toggle('hidden', true);
-    getRestartBtn().classlist.toggle('hidden', true);
-
+    getShowBtn().classList.add('hidden');
+    getRestartBtn().classList.add('hidden');
     getOutput().querySelectorAll('span:not(:last-child)').forEach(el => el.textContent = '');
 }
 
-
-function pause() {
+export function pause() {
     /**
      * Called only if the player has more guesses to try. (tries > 1)
      * - De-activate the selection panel and dim it
@@ -159,25 +149,25 @@ function pause() {
      * - Show the continue button
      */
     deactivate();
-    getPanel().classList.add('dim'); // Add the 'dim' class to dim the selection panel
-    getOutput().querySelector('span:last-child').textContent = `You have ${--tries} left`;
-    getContinueBtn().classList.remove('hidden'); // Show the continue button
+    getPanel().classList.add('dim');
+    const triesLeft = getTries();
+    getOutput().querySelector('span:last-child').textContent = `You have ${triesLeft - 1} left`;
+    getContinueBtn().classList.remove('hidden');
 }
 
-
-function showResults() {
+export function showResults() {
     /**
-     * Called in case the player wins or ran out of guesses.
+     * Called in case the player wins or runs out of guesses.
      * - De-activate the selection panel
      * - Hide the continue button
      * - Show the 'show' and 'restart' buttons
      * - Stop showing the number of tries left
      */
     deactivate();
-    getContinueBtn().classList.toggle('hidden', true);
-    getShowBtn().classList.toggle('hidden', false);
-    getRestartBtn().classList.toggle('hidden', false);
-    getOutput().querySelector('span:last-child').textContent = ' ';
+    getContinueBtn().classList.add('hidden');
+    getShowBtn().classList.remove('hidden');
+    getRestartBtn().classList.remove('hidden');
+    getOutput().querySelector('span:last-child').textContent = '';
 }
 
 // Set up and start the game

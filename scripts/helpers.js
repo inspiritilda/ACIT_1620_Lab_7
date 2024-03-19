@@ -112,18 +112,19 @@ export function setCard() {
         'king of diamonds', 
         'queen of spades'
     ];
-    const idx = math.floor(math.random() * 9);
+
+    const idx = Math.floor(Math.random() * 9);
     const card = cards[idx];
     const path = card.split(' ').join('_');
     const cardNode = getCardNode();
     cardNode.src = `images/${path}.svg`;
     cardNode.alt = card;
 
-    // hide the card
-    cardNode.classList.toggle('hidden', true);
+    // Hide the card
+    cardNode.classList.add('hidden');
 
-    // cancel the animation
-    if (cardNode) {
+    // Cancel the animation
+    if (cardNode.parentElement) {
         const parentElement = cardNode.parentElement;
         cardNode.classList.remove('fade');
         parentElement.classList.remove('flip');
@@ -134,10 +135,11 @@ export function showCard() {
     /**
      * Show the answer card and disable the 'show' button
      */
-    getCardNode().classList.toggle('hidden', false);
-    getShowBtn().toggleAttribute('disabled', true);
+    const cardNode = getCardNode();
+    cardNode.classList.remove('hidden');
+    getShowBtn().setAttribute('disabled', true);
 
-    // animate the card
+    // Animate the card
     cardNode.classList.add('fade');
     cardNode.parentElement.classList.add('flip');
 }
@@ -149,5 +151,5 @@ export function toggleInputState(e) {
      * The information is available in the event object passed to the
      * function at call time.
      */
-    getNumberInput().toggleAttribute('disabled', e.target.checked);
+    getNumberInput().toggleAttribute('disabled', !e.target.checked);
 }
