@@ -71,7 +71,7 @@ export function getTiles() {
     /**
      * Get the card tiles
      */
-    return document.querySelector('.tiles input');
+    return document.querySelectorAll('.tiles input');
 }
 
 export function getTries() {
@@ -92,7 +92,7 @@ export function getShowBtn() {
     /**
      * Get 'show' button node
      */
-    return document.queryselecter('#show-btn');
+    return document.querySelector('#show-btn');
 }
 
 export function setCard() {
@@ -112,7 +112,6 @@ export function setCard() {
         'king of diamonds', 
         'queen of spades'
     ];
-
     const idx = Math.floor(Math.random() * 9);
     const card = cards[idx];
     const path = card.split(' ').join('_');
@@ -120,28 +119,21 @@ export function setCard() {
     cardNode.src = `images/${path}.svg`;
     cardNode.alt = card;
 
-    // Hide the card
-    cardNode.classList.add('hidden');
+    // hide the card
+    cardNode.classList.toggle('hidden', true);
 
-    // Cancel the animation
-    if (cardNode.parentElement) {
-        const parentElement = cardNode.parentElement;
-        cardNode.classList.remove('fade');
-        parentElement.classList.remove('flip');
-    }
+    // cancel the animation
 }
 
 export function showCard() {
     /**
      * Show the answer card and disable the 'show' button
      */
-    const cardNode = getCardNode();
-    cardNode.classList.remove('hidden');
-    getShowBtn().setAttribute('disabled', true);
+    getCardNode().classList.toggle('hidden', false);
+    getShowBtn().toggleAttribute('disabled', true);
 
-    // Animate the card
-    cardNode.classList.add('fade');
-    cardNode.parentElement.classList.add('flip');
+    // animate the card
+
 }
 
 export function toggleInputState(e) {
