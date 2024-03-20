@@ -139,8 +139,8 @@ export function showCard() {
     getShowBtn().toggleAttribute('disabled', true);
 
     // Trigger the animations
-    cardNode.classList.add('flip');
-    cardNode.parentElement.classList.add('fade');
+    cardNode.classList.add('fade');
+    cardNode.parentElement.classList.add('flip');
 }
 
 export function toggleInputState(e) {
